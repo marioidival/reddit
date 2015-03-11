@@ -10,14 +10,15 @@ with open(os.path.join(here, 'CHANGES.txt')) as f:
 
 requires = [
     'alembic',
+    'passlib',
     'pyramid',
-    'pyramid_chameleon',
     'pyramid_debugtoolbar',
+    'pyramid_jinja2',
     'pyramid_tm',
-    'SQLAlchemy',
+    'sqlalchemy',
     'transaction',
-    'zope.sqlalchemy',
     'waitress',
+    'zope.sqlalchemy',
     ]
 
 setup(name='reddit',
