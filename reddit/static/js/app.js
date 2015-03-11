@@ -5,6 +5,7 @@
 
             $(".login").on("click", app.login);
             $(".register").on("click", app.register);
+            $(".logout").on("click", app.logout);
             $(".modal-error-close").on("click", app.modalErrorClose);
         },
 
@@ -18,10 +19,31 @@
             var loginRequest = $.post("/auth/login/", $("#loginForm").serialize());
 
             loginRequest.done(function(data){
-                if( data.success === false ) {
+
+                if( data.success == false && data.msg !== undefined ){
+                    $("#modal-auth-register").modal("hide");
+                    $(".text_error").html(data.msg);
+                    $("#modal-error").modal("show");
+                }
+
+                if( data.success == false && data.msg === undefined) {
                     app.showErrorMessages(data.loginf, "login");
                 }
+
+                if( data.success === true ){
+                    window.location.reload();
+                }
             });
+        },
+
+        logout: function(event){
+            var logoutRequest = $.get("/auth/logout/");
+
+            logoutRequest.done(function(data){
+                if( data.success === true ){
+                    window.location.reload();
+                }
+            })
         },
 
         modalErrorClose: function(event){

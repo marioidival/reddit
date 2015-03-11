@@ -34,7 +34,11 @@
         <div class="container-fluid">
           <div class="text-right">
             <p>
+              {% if request.authenticated_userid %}
+              <a href="#" class="logout">Logout of {{ request.user }}</a>
+              {% else %}
               <a href="#" data-toggle="modal" data-target="#modal-auth-register">Sign in or create an account</a> in seconds
+              {% endif %}
             </p>
           </div>
         </div>
