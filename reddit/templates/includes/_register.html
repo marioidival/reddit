@@ -1,0 +1,49 @@
+<h4 class="text-center">
+  <b>Register</b>
+</h4>
+<form id="registerForm" action="" method="">
+  <div class="form-group">
+    {{ registerf.username.label }}
+    {{ registerf.username(class='form-control') }}
+    <div class="username-register-errors">
+      <p class="text-danger"> </p>
+    </div>
+  </div>
+
+  <div class="form-group">
+    {{ registerf.password.label }}
+    {{ registerf.password(class='form-control') }}
+    <div class="password-register-errors">
+      <p class="text-danger"> </p>
+    </div>
+  </div>
+
+  <div class="form-group">
+    {{ registerf.confirm.label }}
+    {{ registerf.confirm(class='form-control') }}
+    <div class="confirm-register-errors">
+      <p class="text-danger"> </p>
+    </div>
+  </div>
+
+  <div class="form-group">
+    {{ registerf.email.label }}
+    {{ registerf.email(class='form-control', placeholder="(optional)") }}
+    <div class="email-register-errors">
+      <p class="text-danger"> </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group text-center">
+      <div class="col-lg-6">
+        <button type="reset" class="btn btn-danger btn-block">Clear</button>
+      </div>
+
+      <div class="col-lg-6">
+        <button class="btn btn-primary btn-block register">Register</button>
+      </div>
+    </div>
+  </div>
+
+</form>

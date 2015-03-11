@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="{{request.locale_name}}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="pyramid web application">
+    <meta name="author" content="Pylons Project">
+    <link rel="shortcut icon" href="{{request.static_url('reddit:static/pyramid-16x16.png')}}">
+
+    <title>Reddit Pyramid</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{request.static_url('reddit:static/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{request.static_url('reddit:static/css/bootstrap.css.map')}}" rel="stylesheet">
+
+    <!-- Custom styles for this scaffold -->
+    <link href="{{request.static_url('reddit:static/theme.css')}}" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="//oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="navit">
+          <h1 class="text-center"><b>Reddit Pyramid</b></h1>
+        </div>
+        <div class="container-fluid">
+          <div class="text-right">
+            <p>
+              <a href="#" data-toggle="modal" data-target="#modal-auth-register">Sign in or create an account</a> in seconds
+            </p>
+          </div>
+        </div>
+      </div>
+    </div> <!-- container -->
+
+    <div class="modal fade" id="modal-auth-register">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content-me">
+          <div class="modal-header-me">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div class="modal-body">
+            <div class="row">
+              <div class="register-area col-lg-6">
+                {% include "reddit:templates/includes/_register.html" %}
+              </div> <!-- register-area -->
+
+              <div class="login-area col-lg-6">
+                {% include "reddit:templates/includes/_login.html" %}
+              </div> <!-- login-area -->
+            </div> <!-- row -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modal-error">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content-me">
+          <div class="modal-header-me">
+            <button type="button" class="close modal-error-close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div class="modal-body">
+            <div class="text-danger text-center">
+              <p class="text_error bg-danger"></p>
+            </div>
+          </div>
+        </div> <!-- modal content -->
+      </div> <!-- modal dialog -->
+    </div> <!-- modal -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{{ request.static_url('reddit:static/jquery-1.11.2.min.js') }}"></script>
+    <!-- <script src="//oss.maxcdn.com/jquery/2.1.3/jquery.min.map"></script> -->
+    <script src="{{ request.static_url('reddit:static/js/bootstrap.min.js') }}"></script>
+    <script src="{{ request.static_url('reddit:static/js/app.js') }}"></script>
+  </body>
+</html>
+
