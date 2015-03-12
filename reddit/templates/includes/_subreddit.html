@@ -1,0 +1,18 @@
+{% from "templates/macros/_render_form.html" import render_field %}
+<form id="createSubreddit" action="" method="">
+
+  {{ render_field(subredditf.name, class="form-control", action="subreddit") }}
+  {{ render_field(subredditf.description, class="form-control", action="subreddit") }}
+
+  <div class="row">
+    <div class="form-group text-center">
+      <div class="col-lg-6">
+        <button type="reset" class="btn btn-danger btn-block">Clear</button>
+      </div>
+
+      <div class="col-lg-6">
+        <button class="btn btn-primary btn-block subreddit">Create</button>
+      </div>
+    </div>
+  </div> <!-- row -->
+</form>

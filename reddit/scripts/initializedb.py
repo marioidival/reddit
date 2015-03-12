@@ -13,6 +13,8 @@ from pyramid.scripts.common import parse_vars
 
 from ..models import *
 from ..models.users import User
+from ..models.subreddits import SubReddit
+from ..models.threads import Thread
 
 def usage(argv):
     cmd = os.path.basename(argv[0])

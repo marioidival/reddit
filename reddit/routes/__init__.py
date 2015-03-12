@@ -6,3 +6,4 @@ def includeme(config):
 
     config.include(".auth", route_prefix="/auth/")
     config.include(".users", route_prefix="/user/")
+    config.include(".subreddits", route_prefix="/r/")

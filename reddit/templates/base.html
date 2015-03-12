@@ -28,9 +28,27 @@
 
     <div class="container-fluid">
       <div class="row">
+        <div class="subreddits">
+          <ul class="list-inline">
+            <li><b>SUBREDDITS:</b> </li>
+            {% for name in subreddits %}
+            <li>
+              <a href="{{ request.route_url('reddit:subreddit:subreddit', subreddit=name) }}">{{ name }}</a>
+            </li>
+            {% else %}
+              {% if request.authenticated_userid %}
+              <li>
+                <a href="#" data-toggle="modal" data-target="#modal-create-subreddit">Create a new subreddit</a>
+              </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+
         <div class="navit">
           <h1 class="text-center"><b>Reddit Pyramid</b></h1>
         </div>
+
         <div class="container-fluid">
           <div class="text-right">
             <p>
@@ -41,51 +59,23 @@
               {% endif %}
             </p>
           </div>
+        </div> <!-- inner container-fluid -->
+      </div> <!-- row -->
+    </div> <! -- container-fluid -->
+    <div class="container">
+        <div class="col-lg-10">
+          {% block content %} {% endblock %}
         </div>
-      </div>
+
+        <div class="col-lg-2">
+          {% include "templates/includes/_right_content.html" %}
+        </div>
+
     </div> <!-- container -->
 
-    <div class="modal fade" id="modal-auth-register">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content-me">
-          <div class="modal-header-me">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-
-          <div class="modal-body">
-            <div class="row">
-              <div class="register-area col-lg-6">
-                {% include "reddit:templates/includes/_register.html" %}
-              </div> <!-- register-area -->
-
-              <div class="login-area col-lg-6">
-                {% include "reddit:templates/includes/_login.html" %}
-              </div> <!-- login-area -->
-            </div> <!-- row -->
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="modal fade" id="modal-error">
-      <div class="modal-dialog modal-sm">
-        <div class="modal-content-me">
-          <div class="modal-header-me">
-            <button type="button" class="close modal-error-close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-
-          <div class="modal-body">
-            <div class="text-danger text-center">
-              <p class="text_error bg-danger"></p>
-            </div>
-          </div>
-        </div> <!-- modal content -->
-      </div> <!-- modal dialog -->
-    </div> <!-- modal -->
+    {% include "templates/modals/_modal_auth_register.html" %}
+    {% include "templates/modals/_modal_error.html" %}
+    {% include "templates/modals/_modal_create_subreddit.html" %}
 
     <!-- Bootstrap core JavaScript
     ================================================== -->

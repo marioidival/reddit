@@ -1,0 +1,18 @@
+<div class="create-subreddit">
+  <div
+    {% if not request.authenticated_userid %}
+    data-toggle="tooltip"
+    data-placement="top"
+    title="You must be logged in to create SubReddits!"
+    {% endif %}
+    >
+    <button class="btn btn-success btn-lg
+      {% if not request.authenticated_userid %}
+      disabled
+      {% endif %}"
+       data-toggle="modal"
+       data-target="#modal-create-subreddit">
+      Create new subreddit
+    </button>
+  </div>
+</div>

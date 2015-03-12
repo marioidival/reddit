@@ -1,12 +1,10 @@
 from __future__ import unicode_literals
 
-import transaction
-from sqlalchemy.exc import IntegrityError
-
 from pyramid.view import view_config
 from pyramid.security import remember, forget
 from pyramid.httpexceptions import exception_response, HTTPFound
 
+from reddit.models import save_instance
 from reddit.models.users import User
 from reddit.forms.auth import LoginForm, RegisterForm
 
@@ -48,17 +46,7 @@ def register(request):
         delattr(registerf, "confirm")
 
         user = User(**registerf.data)
-        try:
 
-            request.db.add(user)
-            request.db.flush()
-            return {"success": True}
-
-        except IntegrityError as e:
-            # Get email, username
-            key_error = e.message.split(' ')[-1].split('.')[-1]
-            msg = "{0} already exists".format(key_error.title())
-
-            return {"success": False, "msg": msg}
+        save_instance(request, user)
 
     return {"success": False, "registerf": registerf.errors}

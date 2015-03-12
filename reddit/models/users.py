@@ -11,6 +11,12 @@ class User(Base):
     password = sa.Column(sa.String(200, convert_unicode=True))
     email = sa.Column(sa.String(200, convert_unicode=True), unique=True)
 
+    # threads = sa.orm.relationship("Thread", backref="user", lazy="dynamic")
+    # comments = sa.orm.relationship("Comment", backref="user", lazy="dynamic")
+    subreddits = sa.orm.relationship(
+        "SubReddit", backref="user", lazy="dynamic"
+    )
+
     def __init__(self, username, password, email=""):
         self.username = username
         self.email = email

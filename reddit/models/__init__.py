@@ -2,6 +2,7 @@ from datetime import datetime
 
 import sqlalchemy as sa
 
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.declarative import declarative_base, declared_attr
 from sqlalchemy.orm import scoped_session, sessionmaker
 
@@ -29,6 +30,18 @@ class MyBase(object):
 
 
 Base = declarative_base(cls=MyBase)
+
+
+def save_instance(request, instance):
+    try:
+        request.db.add(instance)
+        request.db.flush()
+        return {"success": True}
+    except IntegrityError as e:
+        # Get email, username
+        key_error = e.message.split(' ')[-1].split('.')[-1]
+        msg = "{0} already exists".format(key_error.title())
+
 
 
 # Index()

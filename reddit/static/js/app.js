@@ -4,9 +4,12 @@
         init: function() {
 
             $(".login").on("click", app.login);
-            $(".register").on("click", app.register);
             $(".logout").on("click", app.logout);
+            $(".register").on("click", app.register);
+            $(".subreddit").on("click", app.subreddit);
             $(".modal-error-close").on("click", app.modalErrorClose);
+
+            $('[data-toggle="tooltip"]').tooltip();
         },
 
         login: function(event){
@@ -34,6 +37,27 @@
                     window.location.reload();
                 }
             });
+        },
+
+        subreddit: function(event){
+            event.preventDefault();
+
+            $(".name-subreddit-errors").hide();
+            $(".description-subreddit-errors").hide();
+
+            var createSubreddit = $.post("/r/create/", $("#createSubreddit").serialize());
+
+            createSubreddit.done(function(data){
+                if( data.success == false && data.msg !== undefined ){
+                    $("#modal-create-subreddit").modal("hide");
+                    $(".text_error").html(data.msg);
+                    $("#modal-error").modal("show");
+                }
+
+                if( data.success == false && data.msg === undefined) {
+                    app.showErrorMessages(data.subredditf, "subreddit");
+                }
+            })
         },
 
         logout: function(event){
